@@ -53,7 +53,7 @@ end
 # only matters if we have (at least) 3 of its kind
 def sum_other_numbers(dice)
   sum = 0
-  other_numbers = [1..6].remove([1,5])
+  other_numbers = (2..4).to_a + [6]
 
   other_numbers.each do |num|
     if (dice.count(num) >= 3)
