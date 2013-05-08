@@ -29,8 +29,56 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 #
 # Your goal is to write the score method.
 
+# calculate for one
+# special case
+def calculate_one(dice)
+  if (dice.count(1) == 3)
+    1000
+  else
+    return (dice.count(1) < 3) ? (dice.count(1) * 100) : (1000 + ((dice.count(1) - 3) * 100))
+  end
+end
+
+# calculate for five
+# special case
+def calculate_five(dice)
+  if (dice.count(5) == 3)
+    500
+  else
+    return (dice.count(5) < 3) ? (dice.count(5) * 50) : (500 + ((dice.count(5) - 3) * 50))
+  end
+end
+
+# calculate for any other number
+# only matters if we have (at least) 3 of its kind
+def sum_other_numbers(dice)
+  sum = 0
+  other_numbers = [1..6].remove([1,5])
+
+  other_numbers.each do |num|
+    if (dice.count(num) >= 3)
+      sum += 100 * num
+    end
+  end
+
+  sum
+end
+
 def score(dice)
-  # You need to write this method
+  score = 0
+
+  # No elements? No problem!
+  return score if dice.size == 0
+
+  # Sum 1 and 5 (special rules)
+  score += calculate_one dice
+  score += calculate_five dice
+
+  # do we need to sum any other number?
+  score += sum_other_numbers dice
+
+  # return the final score
+  score
 end
 
 class AboutScoringProject < Neo::Koan
