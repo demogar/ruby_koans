@@ -35,7 +35,8 @@ def calculate_one(dice)
   if (dice.count(1) == 3)
     1000
   else
-    return (dice.count(1) < 3) ? (dice.count(1) * 100) : (1000 + ((dice.count(1) - 3) * 100))
+    (dice.count(1) < 3) ?
+      (dice.count(1) * 100) : (1000 + ((dice.count(1) - 3) * 100))
   end
 end
 
@@ -45,7 +46,8 @@ def calculate_five(dice)
   if (dice.count(5) == 3)
     500
   else
-    return (dice.count(5) < 3) ? (dice.count(5) * 50) : (500 + ((dice.count(5) - 3) * 50))
+    (dice.count(5) < 3) ?
+      (dice.count(5) * 50) : (500 + ((dice.count(5) - 3) * 50))
   end
 end
 
